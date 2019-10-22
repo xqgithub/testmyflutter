@@ -9,7 +9,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'demo列表',
-      theme: new ThemeData(primaryColor: Colors.black),
+      theme: new ThemeData(primaryColor: Colors.white),
+      //注册路由表
+      routes: {
+        "CountInstance": (context) => CountInstanceless(),
+        "EchoRoute": (context) => EchoRoute(),
+        "TipRoute": (context) => TipRoute(text: ModalRoute.of(context).settings.arguments),
+      },
       home: new Directory(),
     );
   }
@@ -46,8 +52,8 @@ _getListData(BuildContext context) {
   );
   var _name = new List();
   _name.add("计数实例");
-  _name.add("路由传值");
-  _name.add("索隆");
+  _name.add("非命令路由传值");
+  _name.add("命令路由传值");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -78,12 +84,12 @@ _getListData(BuildContext context) {
 _pageJump(BuildContext context, int index) {
   if (index == 0) {
     //跳转到计数实例页面
-    Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
-      return new CountInstanceless();
-    }));
+    Navigator.pushNamed(context, "CountInstance");
   } else if (index == 1) {
     Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
       return new RoutePassValue();
     }));
+  } else if (index == 2) {
+    Navigator.pushNamed(context, "EchoRoute", arguments: "我是海贼王路飞");
   }
 }
