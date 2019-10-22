@@ -12,11 +12,25 @@ class MyApp extends StatelessWidget {
       theme: new ThemeData(primaryColor: Colors.white),
       //注册路由表
       routes: {
+        //首页用/命名
+        "/": (context) => Directory(),
         "CountInstance": (context) => CountInstanceless(),
         "EchoRoute": (context) => EchoRoute(),
-        "TipRoute": (context) => TipRoute(text: ModalRoute.of(context).settings.arguments),
+        "TipRoute": (context) =>
+            TipRoute(text: ModalRoute.of(context).settings.arguments),
       },
-      home: new Directory(),
+      //如果路由表中没有注册，才会调用
+      onGenerateRoute: (RouteSettings settings) {
+        WidgetBuilder builder;
+        String routeName = settings.name;
+//        print("路由名字: $routeName");
+        if (routeName == "RoutePassValue") {
+          builder = (BuildContext context) => new RoutePassValue();
+        } else {
+          builder = (BuildContext context) => Directory();
+        }
+        return MaterialPageRoute(builder: builder, settings: settings);
+      },
     );
   }
 }
@@ -86,9 +100,10 @@ _pageJump(BuildContext context, int index) {
     //跳转到计数实例页面
     Navigator.pushNamed(context, "CountInstance");
   } else if (index == 1) {
-    Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
-      return new RoutePassValue();
-    }));
+//    Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
+//      return new RoutePassValue();
+//    }));
+    Navigator.pushNamed(context, "RoutePassValue");
   } else if (index == 2) {
     Navigator.pushNamed(context, "EchoRoute", arguments: "我是海贼王路飞");
   }
