@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:english_words/english_words.dart';
 
 ///计数实例
 class CountInstanceless extends StatelessWidget {
@@ -47,7 +48,8 @@ class _CountInstance extends State<CountInstance> {
             new Text(
               '$_counter',
               style: Theme.of(context).textTheme.display1,
-            )
+            ),
+            RandomWordsWidget(),
           ],
         ),
       ),
@@ -56,6 +58,21 @@ class _CountInstance extends State<CountInstance> {
         tooltip: 'Increment',
         child: new Icon(Icons.add),
       ),
+    );
+  }
+}
+
+/**
+ * 随机生成英文单词
+ */
+class RandomWordsWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // 生成随机字符串
+    final wordPair = new WordPair.random();
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: new Text(wordPair.toString()),
     );
   }
 }
