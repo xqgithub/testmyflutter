@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:testmyflutter/CountInstance.dart';
+import 'package:testmyflutter/LoadAssets.dart';
 import 'package:testmyflutter/RoutePassValue.dart';
 
 void main() => runApp(MyApp());
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
         "EchoRoute": (context) => EchoRoute(),
         "TipRoute": (context) =>
             TipRoute(text: ModalRoute.of(context).settings.arguments),
+        "LoadAssets": (context) => LoadAssets(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -68,6 +70,7 @@ _getListData(BuildContext context) {
   _name.add("计数实例");
   _name.add("非命令路由传值");
   _name.add("命令路由传值");
+  _name.add("加载assets内容");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -106,5 +109,7 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "RoutePassValue");
   } else if (index == 2) {
     Navigator.pushNamed(context, "EchoRoute", arguments: "我是海贼王路飞");
+  } else if (index == 3) {
+    Navigator.pushNamed(context, "LoadAssets");
   }
 }
