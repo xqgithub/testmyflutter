@@ -104,6 +104,7 @@ _getListData(BuildContext context) {
   _name.add("非命令路由传值");
   _name.add("命令路由传值");
   _name.add("加载assets内容");
+  _name.add("错误提示");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -145,5 +146,19 @@ _pageJump(BuildContext context, int index) {
   } else if (index == 3) {
     Navigator.pushNamed(context, "LoadAssets");
   } else if (index == 4) {
+    _asyncexception();
   }
+}
+
+///异常方法1
+_asyncexception() async {
+  foo() async {
+    throw new StateError('This is an async Dart exception.');
+  }
+
+  bar() async {
+    await foo();
+  }
+
+  await bar();
 }
