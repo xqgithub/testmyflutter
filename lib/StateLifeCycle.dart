@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-///State的生命周期
+///State的生命周期1111
 
 class CounterWidget extends StatefulWidget {
   const CounterWidget({Key key, this.initValue: 0});
