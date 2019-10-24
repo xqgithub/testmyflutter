@@ -1,9 +1,42 @@
+library crashy;
+
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:testmyflutter/CountInstance.dart';
 import 'package:testmyflutter/LoadAssets.dart';
 import 'package:testmyflutter/RoutePassValue.dart';
 
-void main() => runApp(MyApp());
+//void main() => runApp(MyApp());
+
+bool get isInDebugMode {
+  bool inDebugMode = true;
+  assert(inDebugMode = true);
+  return inDebugMode;
+}
+
+Future<Null> _reportError(dynamic error, dynamic stackTrace) async {
+  print('Caught error: $error');
+  if (isInDebugMode) {
+    print(stackTrace);
+    print('In dev mode. Not sending report to Sentry.io.');
+    return;
+  }
+}
+
+Future<Null> main() async {
+  FlutterError.onError = (FlutterErrorDetails details) async {
+    if (isInDebugMode) {
+      FlutterError.dumpErrorToConsole(details);
+    } else {
+      Zone.current.handleUncaughtError(details.exception, details.stack);
+    }
+  };
+  runZoned<Future<Null>>(() async {
+    runApp(new MyApp());
+  }, onError: (error, stackTrace) async {
+    await _reportError(error, stackTrace);
+  });
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -111,5 +144,6 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "EchoRoute", arguments: "我是海贼王路飞");
   } else if (index == 3) {
     Navigator.pushNamed(context, "LoadAssets");
+  } else if (index == 4) {
   }
 }
