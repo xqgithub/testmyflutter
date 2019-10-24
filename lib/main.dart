@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:testmyflutter/CountInstance.dart';
 import 'package:testmyflutter/LoadAssets.dart';
 import 'package:testmyflutter/RoutePassValue.dart';
+import 'package:testmyflutter/StateLifeCycle.dart';
 
 //void main() => runApp(MyApp());
 
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
         "TipRoute": (context) =>
             TipRoute(text: ModalRoute.of(context).settings.arguments),
         "LoadAssets": (context) => LoadAssets(),
+        "CounterWidget": (context) => CounterWidget(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -105,6 +107,7 @@ _getListData(BuildContext context) {
   _name.add("命令路由传值");
   _name.add("加载assets内容");
   _name.add("错误提示");
+  _name.add("State的生命周期");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -147,6 +150,8 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "LoadAssets");
   } else if (index == 4) {
     _asyncexception();
+  } else if (index == 5) {
+    Navigator.pushNamed(context, "CounterWidget");
   }
 }
 
