@@ -6,6 +6,7 @@ import 'package:testmyflutter/CountInstance.dart';
 import 'package:testmyflutter/LoadAssets.dart';
 import 'package:testmyflutter/RoutePassValue.dart';
 import 'package:testmyflutter/StateLifeCycle.dart';
+import 'package:testmyflutter/WidgetManageStatus.dart';
 
 //void main() => runApp(MyApp());
 
@@ -55,6 +56,9 @@ class MyApp extends StatelessWidget {
             TipRoute(text: ModalRoute.of(context).settings.arguments),
         "LoadAssets": (context) => LoadAssets(),
         "CounterWidget": (context) => CounterWidget(),
+        "TapboxA": (context) => TapboxA(),
+        "ParentWidget=>TapboxB": (context) => ParentWidget(),
+        "TapboxC": (context) => ParentWidgetC(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -108,6 +112,9 @@ _getListData(BuildContext context) {
   _name.add("加载assets内容");
   _name.add("错误提示");
   _name.add("State的生命周期");
+  _name.add("Widget管理自身状态");
+  _name.add("父Widget管理子Widget的状态");
+  _name.add("混合状态管理");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -152,6 +159,12 @@ _pageJump(BuildContext context, int index) {
     _asyncexception();
   } else if (index == 5) {
     Navigator.pushNamed(context, "CounterWidget");
+  } else if (index == 6) {
+    Navigator.pushNamed(context, "TapboxA");
+  } else if (index == 7) {
+    Navigator.pushNamed(context, "ParentWidget=>TapboxB");
+  } else if (index == 8) {
+    Navigator.pushNamed(context, "TapboxC");
   }
 }
 
