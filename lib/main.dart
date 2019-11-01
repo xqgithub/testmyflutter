@@ -2,6 +2,7 @@ library crashy;
 
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:testmyflutter/ButtonType.dart';
 import 'package:testmyflutter/CountInstance.dart';
 import 'package:testmyflutter/LoadAssets.dart';
 import 'package:testmyflutter/RoutePassValue.dart';
@@ -59,6 +60,7 @@ class MyApp extends StatelessWidget {
         "TapboxA": (context) => TapboxA(),
         "ParentWidget=>TapboxB": (context) => ParentWidget(),
         "TapboxC": (context) => ParentWidgetC(),
+        "ButtonType": (context) => ButtonType(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -115,6 +117,7 @@ _getListData(BuildContext context) {
   _name.add("Widget管理自身状态");
   _name.add("父Widget管理子Widget的状态");
   _name.add("混合状态管理");
+  _name.add("按钮分类");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -165,6 +168,8 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "ParentWidget=>TapboxB");
   } else if (index == 8) {
     Navigator.pushNamed(context, "TapboxC");
+  } else if (index == 9) {
+    Navigator.pushNamed(context, "ButtonType");
   }
 }
 
