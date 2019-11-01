@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:testmyflutter/ButtonType.dart';
 import 'package:testmyflutter/CountInstance.dart';
+import 'package:testmyflutter/ImageAndIcon.dart';
 import 'package:testmyflutter/LoadAssets.dart';
 import 'package:testmyflutter/RoutePassValue.dart';
 import 'package:testmyflutter/StateLifeCycle.dart';
@@ -61,6 +62,7 @@ class MyApp extends StatelessWidget {
         "ParentWidget=>TapboxB": (context) => ParentWidget(),
         "TapboxC": (context) => ParentWidgetC(),
         "ButtonType": (context) => ButtonType(),
+        "ImageAndIcon": (context) => ImageAndIcon(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -118,6 +120,7 @@ _getListData(BuildContext context) {
   _name.add("父Widget管理子Widget的状态");
   _name.add("混合状态管理");
   _name.add("按钮分类");
+  _name.add("图片及ICON");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -170,6 +173,8 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "TapboxC");
   } else if (index == 9) {
     Navigator.pushNamed(context, "ButtonType");
+  } else if (index == 10) {
+    Navigator.pushNamed(context, "ImageAndIcon");
   }
 }
 
