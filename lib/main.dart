@@ -8,6 +8,7 @@ import 'package:testmyflutter/ImageAndIcon.dart';
 import 'package:testmyflutter/LoadAssets.dart';
 import 'package:testmyflutter/RoutePassValue.dart';
 import 'package:testmyflutter/StateLifeCycle.dart';
+import 'package:testmyflutter/SwitchAndCheckBox.dart';
 import 'package:testmyflutter/WidgetManageStatus.dart';
 
 //void main() => runApp(MyApp());
@@ -63,6 +64,7 @@ class MyApp extends StatelessWidget {
         "TapboxC": (context) => ParentWidgetC(),
         "ButtonType": (context) => ButtonType(),
         "ImageAndIcon": (context) => ImageAndIcon(),
+        "SwitchAndCheckBoxTestRoute": (context) => SwitchAndCheckBoxTestRoute(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -121,6 +123,7 @@ _getListData(BuildContext context) {
   _name.add("混合状态管理");
   _name.add("按钮分类");
   _name.add("图片及ICON");
+  _name.add("单选开关和复选框");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -175,6 +178,8 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "ButtonType");
   } else if (index == 10) {
     Navigator.pushNamed(context, "ImageAndIcon");
+  } else if (index == 11) {
+    Navigator.pushNamed(context, "SwitchAndCheckBoxTestRoute");
   }
 }
 
