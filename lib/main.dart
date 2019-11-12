@@ -12,6 +12,8 @@ import 'package:testmyflutter/StateLifeCycle.dart';
 import 'package:testmyflutter/SwitchAndCheckBox.dart';
 import 'package:testmyflutter/WidgetManageStatus.dart';
 
+import 'ProgressIndicator.dart';
+
 //void main() => runApp(MyApp());
 
 bool get isInDebugMode {
@@ -68,6 +70,7 @@ class MyApp extends StatelessWidget {
         "SwitchAndCheckBoxTestRoute": (context) => SwitchAndCheckBoxTestRoute(),
         "InputBox": (context) => InputBox(),
         "TextForm": (context) => TextForm(),
+        "ProgressRoute": (context) => ProgressRoute(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -129,6 +132,7 @@ _getListData(BuildContext context) {
   _name.add("单选开关和复选框");
   _name.add("输入框");
   _name.add("输入框验证");
+  _name.add("进度指示器");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -189,6 +193,8 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "InputBox");
   } else if (index == 13) {
     Navigator.pushNamed(context, "TextForm");
+  } else if (index == 14) {
+    Navigator.pushNamed(context, "ProgressRoute");
   }
 }
 
