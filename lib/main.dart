@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:testmyflutter/ButtonType.dart';
 import 'package:testmyflutter/CountInstance.dart';
 import 'package:testmyflutter/ImageAndIcon.dart';
+import 'package:testmyflutter/InputBoxAndForm.dart';
 import 'package:testmyflutter/LoadAssets.dart';
 import 'package:testmyflutter/RoutePassValue.dart';
 import 'package:testmyflutter/StateLifeCycle.dart';
@@ -65,6 +66,8 @@ class MyApp extends StatelessWidget {
         "ButtonType": (context) => ButtonType(),
         "ImageAndIcon": (context) => ImageAndIcon(),
         "SwitchAndCheckBoxTestRoute": (context) => SwitchAndCheckBoxTestRoute(),
+        "InputBox": (context) => InputBox(),
+        "TextForm": (context) => TextForm(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -124,6 +127,8 @@ _getListData(BuildContext context) {
   _name.add("按钮分类");
   _name.add("图片及ICON");
   _name.add("单选开关和复选框");
+  _name.add("输入框");
+  _name.add("输入框验证");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -180,6 +185,10 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "ImageAndIcon");
   } else if (index == 11) {
     Navigator.pushNamed(context, "SwitchAndCheckBoxTestRoute");
+  } else if (index == 12) {
+    Navigator.pushNamed(context, "InputBox");
+  } else if (index == 13) {
+    Navigator.pushNamed(context, "TextForm");
   }
 }
 
