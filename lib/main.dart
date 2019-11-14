@@ -8,6 +8,7 @@ import 'package:testmyflutter/ImageAndIcon.dart';
 import 'package:testmyflutter/InputBoxAndForm.dart';
 import 'package:testmyflutter/LoadAssets.dart';
 import 'package:testmyflutter/RoutePassValue.dart';
+import 'package:testmyflutter/RowAndColumn.dart';
 import 'package:testmyflutter/StateLifeCycle.dart';
 import 'package:testmyflutter/SwitchAndCheckBox.dart';
 import 'package:testmyflutter/WidgetManageStatus.dart';
@@ -71,6 +72,7 @@ class MyApp extends StatelessWidget {
         "InputBox": (context) => InputBox(),
         "TextForm": (context) => TextForm(),
         "ProgressRoute": (context) => ProgressRoute(),
+        "RowAndColumn": (context) => RowAndColumn(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -133,6 +135,7 @@ _getListData(BuildContext context) {
   _name.add("输入框");
   _name.add("输入框验证");
   _name.add("进度指示器");
+  _name.add("线性布局");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -195,6 +198,8 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "TextForm");
   } else if (index == 14) {
     Navigator.pushNamed(context, "ProgressRoute");
+  } else if (index == 15) {
+    Navigator.pushNamed(context, "RowAndColumn");
   }
 }
 
