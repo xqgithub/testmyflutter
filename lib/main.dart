@@ -9,6 +9,7 @@ import 'package:testmyflutter/InputBoxAndForm.dart';
 import 'package:testmyflutter/LoadAssets.dart';
 import 'package:testmyflutter/RoutePassValue.dart';
 import 'package:testmyflutter/RowAndColumn.dart';
+import 'package:testmyflutter/StackPositioned.dart';
 import 'package:testmyflutter/StateLifeCycle.dart';
 import 'package:testmyflutter/SwitchAndCheckBox.dart';
 import 'package:testmyflutter/WidgetManageStatus.dart';
@@ -78,6 +79,7 @@ class MyApp extends StatelessWidget {
         "resilience": (context) => resilience(),
         "WrapDemo": (context) => WrapDemo(),
         "FlowDemo": (context) => FlowDemo(),
+        "StackPositioned": (context) => StackPositioned(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -144,6 +146,7 @@ _getListData(BuildContext context) {
   _name.add("弹性布局");
   _name.add("Wrap布局");
   _name.add("Flow布局");
+  _name.add("层叠布局");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -214,6 +217,8 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "WrapDemo");
   } else if (index == 18) {
     Navigator.pushNamed(context, "FlowDemo");
+  } else if (index == 19) {
+    Navigator.pushNamed(context, "StackPositioned");
   }
 }
 
