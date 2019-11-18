@@ -18,6 +18,7 @@ import 'package:testmyflutter/WrapAndFlow.dart';
 import 'package:testmyflutter/flex.dart';
 
 import 'ProgressIndicator.dart';
+import 'SizeLimitContainer.dart';
 
 //void main() => runApp(MyApp());
 
@@ -82,6 +83,7 @@ class MyApp extends StatelessWidget {
         "FlowDemo": (context) => FlowDemo(),
         "StackPositioned": (context) => StackPositioned(),
         "AlignRelative": (context) => AlignRelative(),
+        "SizeLimitContainer": (context) => SizeLimitContainer(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -150,6 +152,7 @@ _getListData(BuildContext context) {
   _name.add("Flow布局");
   _name.add("层叠布局");
   _name.add("对齐、相对定位");
+  _name.add("尺寸限制类容器");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -224,6 +227,8 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "StackPositioned");
   } else if (index == 20) {
     Navigator.pushNamed(context, "AlignRelative");
+  } else if (index == 21) {
+    Navigator.pushNamed(context, "SizeLimitContainer");
   }
 }
 
