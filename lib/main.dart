@@ -2,6 +2,7 @@ library crashy;
 
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:testmyflutter/AlignRelative.dart';
 import 'package:testmyflutter/ButtonType.dart';
 import 'package:testmyflutter/CountInstance.dart';
 import 'package:testmyflutter/ImageAndIcon.dart';
@@ -80,6 +81,7 @@ class MyApp extends StatelessWidget {
         "WrapDemo": (context) => WrapDemo(),
         "FlowDemo": (context) => FlowDemo(),
         "StackPositioned": (context) => StackPositioned(),
+        "AlignRelative": (context) => AlignRelative(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -147,6 +149,7 @@ _getListData(BuildContext context) {
   _name.add("Wrap布局");
   _name.add("Flow布局");
   _name.add("层叠布局");
+  _name.add("对齐、相对定位");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -219,6 +222,8 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "FlowDemo");
   } else if (index == 19) {
     Navigator.pushNamed(context, "StackPositioned");
+  } else if (index == 20) {
+    Navigator.pushNamed(context, "AlignRelative");
   }
 }
 
