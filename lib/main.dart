@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:testmyflutter/AlignRelative.dart';
 import 'package:testmyflutter/ButtonType.dart';
+import 'package:testmyflutter/ChangeTransform.dart';
 import 'package:testmyflutter/CountInstance.dart';
 import 'package:testmyflutter/DecoratedBox.dart';
 import 'package:testmyflutter/ImageAndIcon.dart';
@@ -86,6 +87,7 @@ class MyApp extends StatelessWidget {
         "AlignRelative": (context) => AlignRelative(),
         "SizeLimitContainer": (context) => SizeLimitContainer(),
         "DecoratedBoxTemp": (context) => DecoratedBoxTemp(),
+        "ChangeTransform": (context) => ChangeTransform(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -156,6 +158,7 @@ _getListData(BuildContext context) {
   _name.add("对齐、相对定位");
   _name.add("尺寸限制类容器");
   _name.add("装饰容器DecoratedBox");
+  _name.add("变换Transform");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -234,6 +237,8 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "SizeLimitContainer");
   } else if (index == 22) {
     Navigator.pushNamed(context, "DecoratedBoxTemp");
+  } else if (index == 23) {
+    Navigator.pushNamed(context, "ChangeTransform");
   }
 }
 
