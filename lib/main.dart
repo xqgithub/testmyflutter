@@ -13,6 +13,7 @@ import 'package:testmyflutter/InputBoxAndForm.dart';
 import 'package:testmyflutter/LoadAssets.dart';
 import 'package:testmyflutter/RoutePassValue.dart';
 import 'package:testmyflutter/RowAndColumn.dart';
+import 'package:testmyflutter/ScaffoldAndTabBar.dart';
 import 'package:testmyflutter/StackPositioned.dart';
 import 'package:testmyflutter/StateLifeCycle.dart';
 import 'package:testmyflutter/SwitchAndCheckBox.dart';
@@ -90,6 +91,7 @@ class MyApp extends StatelessWidget {
         "DecoratedBoxTemp": (context) => DecoratedBoxTemp(),
         "ChangeTransform": (context) => ChangeTransform(),
         "TestContainer": (context) => TestContainer(),
+        "TestScaffold": (context) => TestScaffold(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -162,6 +164,7 @@ _getListData(BuildContext context) {
   _name.add("装饰容器DecoratedBox");
   _name.add("变换Transform");
   _name.add("Container 容器");
+  _name.add("Scaffold、TabBar、底部导航");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -244,6 +247,8 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "ChangeTransform");
   } else if (index == 24) {
     Navigator.pushNamed(context, "TestContainer");
+  } else if (index == 25) {
+    Navigator.pushNamed(context, "TestScaffold");
   }
 }
 
