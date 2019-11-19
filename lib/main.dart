@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:testmyflutter/AlignRelative.dart';
 import 'package:testmyflutter/ButtonType.dart';
 import 'package:testmyflutter/CountInstance.dart';
+import 'package:testmyflutter/DecoratedBox.dart';
 import 'package:testmyflutter/ImageAndIcon.dart';
 import 'package:testmyflutter/InputBoxAndForm.dart';
 import 'package:testmyflutter/LoadAssets.dart';
@@ -84,6 +85,7 @@ class MyApp extends StatelessWidget {
         "StackPositioned": (context) => StackPositioned(),
         "AlignRelative": (context) => AlignRelative(),
         "SizeLimitContainer": (context) => SizeLimitContainer(),
+        "DecoratedBoxTemp": (context) => DecoratedBoxTemp(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -153,6 +155,7 @@ _getListData(BuildContext context) {
   _name.add("层叠布局");
   _name.add("对齐、相对定位");
   _name.add("尺寸限制类容器");
+  _name.add("装饰容器DecoratedBox");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -229,6 +232,8 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "AlignRelative");
   } else if (index == 21) {
     Navigator.pushNamed(context, "SizeLimitContainer");
+  } else if (index == 22) {
+    Navigator.pushNamed(context, "DecoratedBoxTemp");
   }
 }
 
