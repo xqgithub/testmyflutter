@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:testmyflutter/AlignRelative.dart';
 import 'package:testmyflutter/ButtonType.dart';
 import 'package:testmyflutter/ChangeTransform.dart';
+import 'package:testmyflutter/ClipTestRoute.dart';
 import 'package:testmyflutter/Container.dart';
 import 'package:testmyflutter/CountInstance.dart';
 import 'package:testmyflutter/DecoratedBox.dart';
@@ -92,6 +93,7 @@ class MyApp extends StatelessWidget {
         "ChangeTransform": (context) => ChangeTransform(),
         "TestContainer": (context) => TestContainer(),
         "TestScaffold": (context) => TestScaffold(),
+        "ClipTestRoute": (context) => ClipTestRoute(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -165,6 +167,7 @@ _getListData(BuildContext context) {
   _name.add("变换Transform");
   _name.add("Container 容器");
   _name.add("Scaffold、TabBar、底部导航");
+  _name.add("剪裁（Clip）");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -249,6 +252,8 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "TestContainer");
   } else if (index == 25) {
     Navigator.pushNamed(context, "TestScaffold");
+  } else if (index == 26) {
+    Navigator.pushNamed(context, "ClipTestRoute");
   }
 }
 
