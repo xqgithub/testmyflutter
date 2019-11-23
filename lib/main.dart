@@ -15,6 +15,7 @@ import 'package:testmyflutter/LoadAssets.dart';
 import 'package:testmyflutter/RoutePassValue.dart';
 import 'package:testmyflutter/RowAndColumn.dart';
 import 'package:testmyflutter/ScaffoldAndTabBar.dart';
+import 'package:testmyflutter/ScrollableComponent.dart';
 import 'package:testmyflutter/StackPositioned.dart';
 import 'package:testmyflutter/StateLifeCycle.dart';
 import 'package:testmyflutter/SwitchAndCheckBox.dart';
@@ -94,6 +95,8 @@ class MyApp extends StatelessWidget {
         "TestContainer": (context) => TestContainer(),
         "TestScaffold": (context) => TestScaffold(),
         "ClipTestRoute": (context) => ClipTestRoute(),
+        "TestScrollable": (context) => TestScrollable(),
+        "InfiniteListView": (context) => InfiniteListView(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -168,6 +171,8 @@ _getListData(BuildContext context) {
   _name.add("Container 容器");
   _name.add("Scaffold、TabBar、底部导航");
   _name.add("剪裁（Clip）");
+  _name.add("可滚动组件");
+  _name.add("ListView无限加载列表");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -254,6 +259,10 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "TestScaffold");
   } else if (index == 26) {
     Navigator.pushNamed(context, "ClipTestRoute");
+  } else if (index == 27) {
+    Navigator.pushNamed(context, "TestScrollable");
+  } else if (index == 28) {
+    Navigator.pushNamed(context, "InfiniteListView");
   }
 }
 
