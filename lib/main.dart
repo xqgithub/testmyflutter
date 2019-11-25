@@ -97,6 +97,7 @@ class MyApp extends StatelessWidget {
         "ClipTestRoute": (context) => ClipTestRoute(),
         "TestScrollable": (context) => TestScrollable(),
         "InfiniteListView": (context) => InfiniteListView(),
+        "InfiniteGridView": (context) => InfiniteGridView(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -173,6 +174,7 @@ _getListData(BuildContext context) {
   _name.add("剪裁（Clip）");
   _name.add("可滚动组件");
   _name.add("ListView无限加载列表");
+  _name.add("GridView无限加载列表");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -263,6 +265,8 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "TestScrollable");
   } else if (index == 28) {
     Navigator.pushNamed(context, "InfiniteListView");
+  } else if (index == 29) {
+    Navigator.pushNamed(context, "InfiniteGridView");
   }
 }
 

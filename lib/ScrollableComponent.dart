@@ -20,7 +20,11 @@ class _TestScrollable extends State<TestScrollable> {
 //      body: _TestListView1(),
 //      body: _TestListView2(),
 //      body: _TestListView3(),
-      body: _TestListView4(),
+//      body: _TestListView4(),
+//      body: _TestGridView1(),
+//      body: _TestGridView2(),
+//      body: _TestGridView3(),
+      body: _TestGridView4(),
     );
   }
 }
@@ -197,5 +201,130 @@ class _InfiniteListViewState extends State<InfiniteListView> {
         separatorBuilder: (context, index) => Divider(height: .0),
       ),
     );
+  }
+}
+
+///GridView,gridDelegate---SliverGridDelegateWithFixedCrossAxisCount
+///该子类实现了一个横轴为固定数量子元素的layout算法
+_TestGridView1() {
+  return GridView(
+    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3, //横轴三个子widget
+        childAspectRatio: 1.0 //宽高比为1时，子widget
+        ),
+    children: <Widget>[
+      Icon(Icons.ac_unit),
+      Icon(Icons.airport_shuttle),
+      Icon(Icons.all_inclusive),
+      Icon(Icons.beach_access),
+      Icon(Icons.cake),
+      Icon(Icons.free_breakfast),
+    ],
+  );
+}
+
+///GridView.count,构造函数内部使用了SliverGridDelegateWithFixedCrossAxisCount，我们通过它可以快速的创建横轴固定数量子元素的GridView
+_TestGridView2() {
+  return GridView.count(
+    crossAxisCount: 4,
+    childAspectRatio: 1.0,
+    children: <Widget>[
+      Icon(Icons.ac_unit),
+      Icon(Icons.airport_shuttle),
+      Icon(Icons.all_inclusive),
+      Icon(Icons.beach_access),
+      Icon(Icons.cake),
+      Icon(Icons.free_breakfast),
+    ],
+  );
+}
+
+///GridView,gridDelegate---SliverGridDelegateWithMaxCrossAxisExtent
+///该子类实现了一个横轴子元素为固定最大长度的layout算法
+_TestGridView3() {
+  return GridView(
+    padding: EdgeInsets.zero,
+    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 120.0, childAspectRatio: 2.0 //宽高比为2
+        ),
+    children: <Widget>[
+      Icon(Icons.ac_unit),
+      Icon(Icons.airport_shuttle),
+      Icon(Icons.all_inclusive),
+      Icon(Icons.beach_access),
+      Icon(Icons.cake),
+      Icon(Icons.free_breakfast),
+    ],
+  );
+}
+
+///GridView.extent,构造函数内部使用了SliverGridDelegateWithMaxCrossAxisExtent，我们通过它可以快速的创建纵轴子元素为固定最大长度的的GridView
+_TestGridView4() {
+  return GridView.extent(
+    maxCrossAxisExtent: 120.0,
+    childAspectRatio: 2.0,
+    children: <Widget>[
+      Icon(Icons.ac_unit),
+      Icon(Icons.airport_shuttle),
+      Icon(Icons.all_inclusive),
+      Icon(Icons.beach_access),
+      Icon(Icons.cake),
+      Icon(Icons.free_breakfast),
+    ],
+  );
+}
+
+///GridView 无限加载
+///GridView.builder,动态创建子widget
+class InfiniteGridView extends StatefulWidget {
+  @override
+  _InfiniteGridViewState createState() => new _InfiniteGridViewState();
+}
+
+class _InfiniteGridViewState extends State<InfiniteGridView> {
+  List<IconData> _icons = []; //保存Icon数据
+
+  @override
+  void initState() {
+    // 初始化数据
+    _retrieveIcons();
+  }
+
+  //模拟异步获取数据
+  void _retrieveIcons() {
+    Future.delayed(Duration(milliseconds: 200)).then((e) {
+      setState(() {
+        _icons.addAll([
+          Icons.ac_unit,
+          Icons.airport_shuttle,
+          Icons.all_inclusive,
+          Icons.beach_access,
+          Icons.cake,
+          Icons.free_breakfast
+        ]);
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("GridView无限加载列表"),
+        ),
+        body: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3, //每行3列
+            childAspectRatio: 1.0, //显示区域宽高相等
+          ),
+          itemCount: _icons.length,
+          itemBuilder: (context, index) {
+            //如果显示到最后一个并且Icon总数小于100时继续获取数据
+            if (index == _icons.length - 1 && _icons.length < 100) {
+              _retrieveIcons();
+            }
+            return Icon(_icons[index]);
+          },
+        ));
   }
 }
