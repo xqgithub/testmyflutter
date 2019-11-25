@@ -99,6 +99,9 @@ class MyApp extends StatelessWidget {
         "InfiniteListView": (context) => InfiniteListView(),
         "InfiniteGridView": (context) => InfiniteGridView(),
         "CustomScrollViewTestRoute": (context) => CustomScrollViewTestRoute(),
+        "ScrollControllerTestRoute": (context) => ScrollControllerTestRoute(),
+        "ScrollNotificationTestRoute": (context) =>
+            ScrollNotificationTestRoute(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -177,6 +180,8 @@ _getListData(BuildContext context) {
   _name.add("ListView无限加载列表");
   _name.add("GridView无限加载列表");
   _name.add("CustomScrollView");
+  _name.add("滚动监听及控制ScrollController");
+  _name.add("滚动监听及控制NotificationListener");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -271,6 +276,10 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "InfiniteGridView");
   } else if (index == 30) {
     Navigator.pushNamed(context, "CustomScrollViewTestRoute");
+  } else if (index == 31) {
+    Navigator.pushNamed(context, "ScrollControllerTestRoute");
+  } else if (index == 32) {
+    Navigator.pushNamed(context, "ScrollNotificationTestRoute");
   }
 }
 
