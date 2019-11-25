@@ -328,3 +328,74 @@ class _InfiniteGridViewState extends State<InfiniteGridView> {
         ));
   }
 }
+
+///CustomScrollView,可以使用Sliver来自定义滚动模型（效果）的组件。它可以包含多种滚动模型
+///功能就是 一个页面，顶部需要一个GridView，底部需要一个ListView，而要求整个页面的滑动效果是统一的，即它们看起来是一个整体，类似胶水
+class CustomScrollViewTestRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    //因为本路由没有使用Scaffold，为了让子级Widget(如Text)使用
+    //Material Design 默认的样式风格,我们使用Material作为本路由的根。
+    return Material(
+      child: CustomScrollView(
+        slivers: <Widget>[
+          ///AppBar，包含一个导航栏,
+          ///SliverAppBar对应AppBar，两者不同之处在于SliverAppBar可以集成到CustomScrollView。
+          ///SliverAppBar可以结合FlexibleSpaceBar实现Material Design中头部伸缩的模型，具体效果
+          SliverAppBar(
+            pinned: true,
+            expandedHeight: 250.0,
+            flexibleSpace: FlexibleSpaceBar(
+              titlePadding: const EdgeInsets.only(left: 50.0, bottom: 15.0),
+              title: const Text("CustomScrollView"),
+              background: Image.asset(
+                "assets/images/lufei.jpg",
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.all(8.0),
+
+            ///SliverGrid
+            ///它用SliverPadding包裹以给SliverGrid添加补白。SliverGrid是一个两列，宽高比为4的网格，它有20个子组件
+            sliver: SliverGrid(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2, //Grid按两列显示
+                  mainAxisSpacing: 10.0,
+                  crossAxisSpacing: 10.0,
+                  childAspectRatio: 4.0),
+              delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  //创建子widget
+                  return Container(
+                    alignment: Alignment.center,
+                    color: Colors.cyan[100 * (index % 9)],
+                    child: new Text('grid item $index'),
+                  );
+                },
+                childCount: 20,
+              ),
+            ),
+          ),
+
+          ///SliverFixedExtentList：它是一个所有子元素高度都为50像素的列表
+          SliverFixedExtentList(
+            itemExtent: 50.0,
+            delegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index) {
+                //创建列表项
+                return Container(
+                  alignment: Alignment.center,
+                  color: Colors.lightBlue[100 * (index % 9)],
+                  child: new Text('list item $index'),
+                );
+              },
+              childCount: 20,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
