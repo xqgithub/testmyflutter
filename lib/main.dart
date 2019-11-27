@@ -9,6 +9,7 @@ import 'package:testmyflutter/ClipTestRoute.dart';
 import 'package:testmyflutter/Container.dart';
 import 'package:testmyflutter/CountInstance.dart';
 import 'package:testmyflutter/DecoratedBox.dart';
+import 'package:testmyflutter/FunctionalComponent.dart';
 import 'package:testmyflutter/ImageAndIcon.dart';
 import 'package:testmyflutter/InputBoxAndForm.dart';
 import 'package:testmyflutter/LoadAssets.dart';
@@ -102,6 +103,11 @@ class MyApp extends StatelessWidget {
         "ScrollControllerTestRoute": (context) => ScrollControllerTestRoute(),
         "ScrollNotificationTestRoute": (context) =>
             ScrollNotificationTestRoute(),
+        "TestFunctionalComponent": (context) => TestFunctionalComponent(),
+        "InheritedWidgetTestRoute": (context) => InheritedWidgetTestRoute(),
+        "ProviderRoute": (context) => ProviderRoute(),
+        "ThemeTestRoute": (context) => ThemeTestRoute(),
+        "TestAlertDialog": (context) => TestAlertDialog(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -182,6 +188,11 @@ _getListData(BuildContext context) {
   _name.add("CustomScrollView");
   _name.add("滚动监听及控制ScrollController");
   _name.add("滚动监听及控制NotificationListener");
+  _name.add("功能型Widget简介");
+  _name.add("数据共享（InheritedWidget）");
+  _name.add("数据共享（Provider）");
+  _name.add("主题颜色切换");
+  _name.add("对话框详解");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -280,6 +291,16 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "ScrollControllerTestRoute");
   } else if (index == 32) {
     Navigator.pushNamed(context, "ScrollNotificationTestRoute");
+  } else if (index == 33) {
+    Navigator.pushNamed(context, "TestFunctionalComponent");
+  } else if (index == 34) {
+    Navigator.pushNamed(context, "InheritedWidgetTestRoute");
+  } else if (index == 35) {
+    Navigator.pushNamed(context, "ProviderRoute");
+  } else if (index == 36) {
+    Navigator.pushNamed(context, "ThemeTestRoute");
+  } else if (index == 37) {
+    Navigator.pushNamed(context, "TestAlertDialog");
   }
 }
 
