@@ -113,6 +113,7 @@ class MyApp extends StatelessWidget {
         "TestGestureDetector": (context) => TestGestureDetector(),
         "TestGestureRecognizer": (context) => TestGestureRecognizer(),
         "BothDirectionTestRoute": (context) => BothDirectionTestRoute(),
+        "TestNotification": (context) => TestNotification(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -202,6 +203,7 @@ _getListData(BuildContext context) {
   _name.add("手势识别GestureDetector");
   _name.add("手势识别GestureRecognizer");
   _name.add("手势竞争与冲突");
+  _name.add("通知Notification");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -318,6 +320,8 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "TestGestureRecognizer");
   } else if (index == 41) {
     Navigator.pushNamed(context, "BothDirectionTestRoute");
+  } else if (index == 42) {
+    Navigator.pushNamed(context, "TestNotification");
   }
 }
 

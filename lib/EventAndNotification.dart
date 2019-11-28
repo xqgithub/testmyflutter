@@ -329,3 +329,141 @@ class BothDirectionTestRouteState extends State<BothDirectionTestRoute> {
 }
 
 /************* 手势识别 end *************/
+
+/************* Notification start *************/
+
+class TestNotification extends StatefulWidget {
+  @override
+  _TestNotification createState() => new _TestNotification();
+}
+
+class _TestNotification extends State<TestNotification> {
+  String _msg = "";
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("通知Notification"),
+      ),
+//      body: _TestNotification1(),
+//      body: _TestNotification2(),
+
+      ///自定义通知
+//      body: NotificationListener<MyNotification>(
+//        onNotification: (notification) {
+//          setState(() {
+//            _msg += notification.msg + "  ";
+//          });
+//          return true;
+//        },
+//        child: Center(
+//          child: Column(
+//            mainAxisSize: MainAxisSize.min,
+//            children: <Widget>[
+//              Builder(
+//                builder: (context) {
+//                  return RaisedButton(
+//                    onPressed: () => MyNotification("哇哈哈").dispatch(context),
+//                    child: Text("Send Notification"),
+//                  );
+//                },
+//              ),
+//              Text(_msg),
+//            ],
+//          ),
+//        ),
+//      ),
+
+      ///阻止冒泡
+      body: NotificationListener<MyNotification>(
+        onNotification: (notification) {
+          print(notification.msg); //打印通知
+          return true;
+        },
+        child: NotificationListener<MyNotification>(
+          onNotification: (notification) {
+            setState(() {
+              _msg += notification.msg + "  ";
+            });
+            return true;
+          },
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Builder(
+                  builder: (context) {
+                    return RaisedButton(
+                      onPressed: () => MyNotification("哇哈哈").dispatch(context),
+                      child: Text("Send Notification"),
+                    );
+                  },
+                ),
+                Text(_msg),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+///ListView的通知监听
+_TestNotification1() {
+  return NotificationListener(
+    ///onNotification 返回值类型为布尔值，当返回值为true时，阻止冒泡，其父级Widget将再也收不到该通知；当返回值为false 时继续向上冒泡通知
+    onNotification: (notification) {
+      switch (notification.runtimeType) {
+        case ScrollStartNotification:
+          print("开始滚动");
+          break;
+        case ScrollUpdateNotification:
+          print("正在滚动");
+          break;
+        case ScrollEndNotification:
+          print("滚动停止");
+          break;
+        case OverscrollNotification:
+          print("滚动到边界");
+          break;
+      }
+      return true;
+    },
+    child: ListView.builder(
+      itemCount: 100,
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text("$index"),
+        );
+      },
+    ),
+  );
+}
+
+///指定通知类型
+_TestNotification2() {
+  //指定监听通知的类型为滚动结束通知(ScrollEndNotification)
+  return NotificationListener<ScrollEndNotification>(
+    onNotification: (notification) {
+      //只会在滚动结束时才会触发此回调
+      print(notification);
+    },
+    child: ListView.builder(
+        itemCount: 100,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text("$index"),
+          );
+        }),
+  );
+}
+
+///自定义通知
+class MyNotification extends Notification {
+  MyNotification(this.msg);
+
+  final String msg;
+}
+/************* Notification end *************/
