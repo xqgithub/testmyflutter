@@ -9,6 +9,7 @@ import 'package:testmyflutter/ClipTestRoute.dart';
 import 'package:testmyflutter/Container.dart';
 import 'package:testmyflutter/CountInstance.dart';
 import 'package:testmyflutter/DecoratedBox.dart';
+import 'package:testmyflutter/EventAndNotification.dart';
 import 'package:testmyflutter/FunctionalComponent.dart';
 import 'package:testmyflutter/ImageAndIcon.dart';
 import 'package:testmyflutter/InputBoxAndForm.dart';
@@ -108,6 +109,10 @@ class MyApp extends StatelessWidget {
         "ProviderRoute": (context) => ProviderRoute(),
         "ThemeTestRoute": (context) => ThemeTestRoute(),
         "TestAlertDialog": (context) => TestAlertDialog(),
+        "TestPointerEvent": (context) => TestPointerEvent(),
+        "TestGestureDetector": (context) => TestGestureDetector(),
+        "TestGestureRecognizer": (context) => TestGestureRecognizer(),
+        "BothDirectionTestRoute": (context) => BothDirectionTestRoute(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -193,6 +198,10 @@ _getListData(BuildContext context) {
   _name.add("数据共享（Provider）");
   _name.add("主题颜色切换");
   _name.add("对话框详解");
+  _name.add("原始指针事件处理");
+  _name.add("手势识别GestureDetector");
+  _name.add("手势识别GestureRecognizer");
+  _name.add("手势竞争与冲突");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -301,6 +310,14 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "ThemeTestRoute");
   } else if (index == 37) {
     Navigator.pushNamed(context, "TestAlertDialog");
+  } else if (index == 38) {
+    Navigator.pushNamed(context, "TestPointerEvent");
+  } else if (index == 39) {
+    Navigator.pushNamed(context, "TestGestureDetector");
+  } else if (index == 40) {
+    Navigator.pushNamed(context, "TestGestureRecognizer");
+  } else if (index == 41) {
+    Navigator.pushNamed(context, "BothDirectionTestRoute");
   }
 }
 
