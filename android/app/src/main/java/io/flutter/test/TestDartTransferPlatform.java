@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import io.flutter.app.FlutterActivity;
 import io.flutter.plugin.common.BasicMessageChannel;
+import io.flutter.plugin.common.EventChannel;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.StandardMessageCodec;
@@ -20,6 +21,7 @@ public class TestDartTransferPlatform extends FlutterActivity {
         GeneratedPluginRegistrant.registerWith(this);
         communicateFromBasicMessageChannel();
         communicateFromMethodChannel();
+        communicateFromEventChannel();
     }
 
     /**
@@ -78,5 +80,14 @@ public class TestDartTransferPlatform extends FlutterActivity {
                 }
             }
         });
+    }
+
+    /**
+     * EventChannel 方式
+     */
+    private EventChannel.EventSink eventSink;
+
+    private void communicateFromEventChannel() {
+        BatteryManager.registerWith(this);
     }
 }
