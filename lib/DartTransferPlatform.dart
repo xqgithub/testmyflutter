@@ -32,9 +32,27 @@ class _TestDartTransferPlatform extends State<TestDartTransferPlatform> {
                   ),
                 ),
                 onPressed: () async {
-                  //弹出对话框并等待其关闭
                   sendMessage();
                   receiveMessage();
+                },
+                color: Colors.red,
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 15.0),
+              width: 250.0,
+              height: 50.0,
+              child: new RaisedButton(
+                child: new Text(
+                  "MethodChannel",
+                  style: new TextStyle(
+                    color: Colors.white,
+                    fontSize: 18.0,
+                  ),
+                ),
+                onPressed: () async {
+                  String result = await invokeNative("method1", 1111);
+                  print("result =-= " + result);
                 },
                 color: Colors.red,
               ),
@@ -46,6 +64,8 @@ class _TestDartTransferPlatform extends State<TestDartTransferPlatform> {
   }
 
   /*************  BasicMessageChannel start *************/
+
+  ///BasicMessageChannel 主要是传递字符串和一些半结构体的数据
 
   ///初始化BasicMessageChannel
   static const _messagechannel = const BasicMessageChannel<Object>(
@@ -67,6 +87,20 @@ class _TestDartTransferPlatform extends State<TestDartTransferPlatform> {
     });
   }
 
-/*************  BasicMessageChannel end *************/
+  /*************  BasicMessageChannel end *************/
+
+  /*************  MethodChannel  start *************/
+
+  ///MethodChannel 用于传递方法调用
+
+  static const _messagechannel2 = const MethodChannel("methodchannel");
+
+  //调用native方法
+  static Future<dynamic> invokeNative(String methodName,
+      [dynamic arguments]) async {
+    return await _messagechannel2.invokeMethod(methodName, arguments);
+  }
+
+/*************  MethodChannel  end *************/
 
 }
