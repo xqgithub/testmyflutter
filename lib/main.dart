@@ -3,11 +3,13 @@ library crashy;
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:testmyflutter/AlignRelative.dart';
+import 'package:testmyflutter/Animation.dart';
 import 'package:testmyflutter/ButtonType.dart';
 import 'package:testmyflutter/ChangeTransform.dart';
 import 'package:testmyflutter/ClipTestRoute.dart';
 import 'package:testmyflutter/Container.dart';
 import 'package:testmyflutter/CountInstance.dart';
+import 'package:testmyflutter/DartTransferPlatform.dart';
 import 'package:testmyflutter/DecoratedBox.dart';
 import 'package:testmyflutter/EventAndNotification.dart';
 import 'package:testmyflutter/FunctionalComponent.dart';
@@ -114,6 +116,13 @@ class MyApp extends StatelessWidget {
         "TestGestureRecognizer": (context) => TestGestureRecognizer(),
         "BothDirectionTestRoute": (context) => BothDirectionTestRoute(),
         "TestNotification": (context) => TestNotification(),
+        "ScaleAnimationRoute": (context) => ScaleAnimationRoute(),
+        "HeroAnimationRoute": (context) => HeroAnimationRoute(),
+        "StaggerRoute": (context) => StaggerRoute(),
+        "TestDartTransferPlatform": (context) => TestDartTransferPlatform(),
+        "AnimatedSwitcherCounterRoute": (context) =>
+            AnimatedSwitcherCounterRoute(),
+        "AnimatedWidgetsTest": (context) => AnimatedWidgetsTest(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -204,6 +213,12 @@ _getListData(BuildContext context) {
   _name.add("手势识别GestureRecognizer");
   _name.add("手势竞争与冲突");
   _name.add("通知Notification");
+  _name.add("动画缩放和监听");
+  _name.add("动画Hero");
+  _name.add("交织动画");
+  _name.add("Android原生和flutter数据交互");
+  _name.add("通用切换动画组件");
+  _name.add("Flutter预置的动画过渡组件");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -239,7 +254,15 @@ _pageJump(BuildContext context, int index) {
 //    Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
 //      return new RoutePassValue();
 //    }));
+
     Navigator.pushNamed(context, "RoutePassValue");
+
+//    //动画第一种
+//    Navigator.of(context).push(animation_route(RoutePassValue()));
+//    //动画第二种
+//    Navigator.push(context, FadeRoute(builder: (context) {
+//      return RoutePassValue();
+//    }));
   } else if (index == 2) {
     Navigator.pushNamed(context, "EchoRoute", arguments: "我是海贼王路飞");
   } else if (index == 3) {
@@ -322,6 +345,18 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "BothDirectionTestRoute");
   } else if (index == 42) {
     Navigator.pushNamed(context, "TestNotification");
+  } else if (index == 43) {
+    Navigator.pushNamed(context, "ScaleAnimationRoute");
+  } else if (index == 44) {
+    Navigator.pushNamed(context, "HeroAnimationRoute");
+  } else if (index == 45) {
+    Navigator.pushNamed(context, "StaggerRoute");
+  } else if (index == 46) {
+    Navigator.pushNamed(context, "TestDartTransferPlatform");
+  } else if (index == 47) {
+    Navigator.pushNamed(context, "AnimatedSwitcherCounterRoute");
+  } else if (index == 48) {
+    Navigator.pushNamed(context, "AnimatedWidgetsTest");
   }
 }
 
