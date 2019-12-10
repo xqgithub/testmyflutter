@@ -9,6 +9,7 @@ import 'package:testmyflutter/ChangeTransform.dart';
 import 'package:testmyflutter/ClipTestRoute.dart';
 import 'package:testmyflutter/Container.dart';
 import 'package:testmyflutter/CountInstance.dart';
+import 'package:testmyflutter/CustomizeComponent.dart';
 import 'package:testmyflutter/DartTransferPlatform.dart';
 import 'package:testmyflutter/DecoratedBox.dart';
 import 'package:testmyflutter/EventAndNotification.dart';
@@ -123,6 +124,11 @@ class MyApp extends StatelessWidget {
         "AnimatedSwitcherCounterRoute": (context) =>
             AnimatedSwitcherCounterRoute(),
         "AnimatedWidgetsTest": (context) => AnimatedWidgetsTest(),
+        "GradientButtonRoute": (context) => GradientButtonRoute(),
+        "TurnBoxRoute": (context) => TurnBoxRoute(),
+        "CustomPaintRoute": (context) => CustomPaintRoute(),
+        "GradientCircularProgressRoute": (context) =>
+            GradientCircularProgressRoute(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -219,6 +225,10 @@ _getListData(BuildContext context) {
   _name.add("Android原生和flutter数据交互");
   _name.add("通用切换动画组件");
   _name.add("Flutter预置的动画过渡组件");
+  _name.add("自定义渐变按钮");
+  _name.add("组合实例：TurnBox");
+  _name.add("自绘组件 （CustomPaint与Canvas）");
+  _name.add("自绘实例：圆形背景渐变进度条");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -357,6 +367,14 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "AnimatedSwitcherCounterRoute");
   } else if (index == 48) {
     Navigator.pushNamed(context, "AnimatedWidgetsTest");
+  } else if (index == 49) {
+    Navigator.pushNamed(context, "GradientButtonRoute");
+  } else if (index == 50) {
+    Navigator.pushNamed(context, "TurnBoxRoute");
+  } else if (index == 51) {
+    Navigator.pushNamed(context, "CustomPaintRoute");
+  } else if (index == 52) {
+    Navigator.pushNamed(context, "GradientCircularProgressRoute");
   }
 }
 
