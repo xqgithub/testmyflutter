@@ -13,6 +13,7 @@ import 'package:testmyflutter/CustomizeComponent.dart';
 import 'package:testmyflutter/DartTransferPlatform.dart';
 import 'package:testmyflutter/DecoratedBox.dart';
 import 'package:testmyflutter/EventAndNotification.dart';
+import 'package:testmyflutter/FileAndNetworkProcess.dart';
 import 'package:testmyflutter/FunctionalComponent.dart';
 import 'package:testmyflutter/ImageAndIcon.dart';
 import 'package:testmyflutter/InputBoxAndForm.dart';
@@ -129,6 +130,11 @@ class MyApp extends StatelessWidget {
         "CustomPaintRoute": (context) => CustomPaintRoute(),
         "GradientCircularProgressRoute": (context) =>
             GradientCircularProgressRoute(),
+        "FileOperationRoute": (context) => FileOperationRoute(),
+        "HttpTestRoute": (context) => HttpTestRoute(),
+        "DioHttpTestRoute": (context) => DioHttpTestRoute(),
+        "WebSocketRoute": (context) => WebSocketRoute(),
+        "TestJsonToDartModel": (context) => TestJsonToDartModel(),
       },
       //如果路由表中没有注册，才会调用
       onGenerateRoute: (RouteSettings settings) {
@@ -229,6 +235,11 @@ _getListData(BuildContext context) {
   _name.add("组合实例：TurnBox");
   _name.add("自绘组件 （CustomPaint与Canvas）");
   _name.add("自绘实例：圆形背景渐变进度条");
+  _name.add("文件操作");
+  _name.add("HttpClient发起HTTP请求");
+  _name.add("Http请求-Dio http库");
+  _name.add("WebSockets");
+  _name.add("Json转Dart Model类");
 
   return new ListView.builder(
     scrollDirection: Axis.vertical, //设置列表的 滑动方向
@@ -375,6 +386,16 @@ _pageJump(BuildContext context, int index) {
     Navigator.pushNamed(context, "CustomPaintRoute");
   } else if (index == 52) {
     Navigator.pushNamed(context, "GradientCircularProgressRoute");
+  } else if (index == 53) {
+    Navigator.pushNamed(context, "FileOperationRoute");
+  } else if (index == 54) {
+    Navigator.pushNamed(context, "HttpTestRoute");
+  } else if (index == 55) {
+    Navigator.pushNamed(context, "DioHttpTestRoute");
+  } else if (index == 56) {
+    Navigator.pushNamed(context, "WebSocketRoute");
+  } else if (index == 57) {
+    Navigator.pushNamed(context, "TestJsonToDartModel");
   }
 }
 
