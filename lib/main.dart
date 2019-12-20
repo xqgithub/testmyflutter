@@ -1,5 +1,6 @@
 library crashy;
 
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:testmyflutter/AlignRelative.dart';
@@ -17,6 +18,7 @@ import 'package:testmyflutter/FileAndNetworkProcess.dart';
 import 'package:testmyflutter/FunctionalComponent.dart';
 import 'package:testmyflutter/ImageAndIcon.dart';
 import 'package:testmyflutter/InputBoxAndForm.dart';
+import 'package:testmyflutter/Internationalization.dart';
 import 'package:testmyflutter/LoadAssets.dart';
 import 'package:testmyflutter/RoutePassValue.dart';
 import 'package:testmyflutter/RowAndColumn.dart';
@@ -70,10 +72,26 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       title: 'demo列表',
       theme: new ThemeData(primaryColor: Colors.white),
+
+      ///国际化
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        //初始化定义的国际化方法
+        DemoLocalizationsDelegate.delegate,
+      ],
+      supportedLocales: [
+        const Locale('zh', 'CH'),
+        const Locale('en', 'US'),
+      ],
       //注册路由表
       routes: {
         //首页用/命名
-        "/": (context) => Directory(),
+//        "/": (context) => Directory(),
+        "/": (context) => FreeLocalizations(
+              key: freeLocalizationStateKey,
+              child: Directory(),
+            ),
         "CountInstance": (context) => CountInstanceless(),
         "EchoRoute": (context) => EchoRoute(),
         "TipRoute": (context) =>
@@ -166,10 +184,14 @@ class _DirectoryState extends State<Directory> {
       appBar: new AppBar(
         backgroundColor: Colors.red,
         title: new Center(
-          child: new Text('第一个demo列表'),
+          child: new Text(DemoLocalizations.of(context).titlehaha),
         ),
       ),
       body: _getListData(context),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: changeLocale,
+      ),
     );
   }
 }
