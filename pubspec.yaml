@@ -26,22 +26,22 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.2
+  cupertino_icons: ">=0.1.2 <2.0.0"
   #使用英语单词的实用程序。 对音节进行计数，生成清晰的单词组合，并按使用量提供对前5000个英语单词的访问。
-  english_words: ^3.1.3
+  english_words: ">=3.1.3 <5.0.0"
 
-  path_provider: 0.4.1
-  dio: 3.0.7
-  web_socket_channel: 1.1.0
-  json_annotation: ^2.0.0
+  path_provider: ">=0.4.1 <3.0.0"
+  dio: ">=3.0.7 <6.0.0"
+  web_socket_channel: ">=1.1.0 <3.0.0"
+  json_annotation: ">=2.0.0 <5.0.0"
 
   flutter_localizations:
     sdk: flutter
 
 #开发环境依赖的工具包（而不是flutter应用本身依赖的包）
 dev_dependencies:
-  build_runner: ^1.0.0
-  json_serializable: ^2.0.0
+  build_runner: ">=1.0.0 <3.0.0"
+  json_serializable: ">=2.0.0 <7.0.0"
 
   flutter_test:
     sdk: flutter
